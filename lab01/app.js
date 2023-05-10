@@ -8,6 +8,12 @@ app.get('/', (req,res)=> {
     res.send({msg: KEY })
 })
 
+app.get('/date', (req,res)=>{
+    console.log(req.method)
+    console.log(req.url)
+    let current = new Date()
+    res.send(current)
+})
 
 console.log(process.env.KEY)
 let port = process.env.PORT || 8080   // เรียก port ที่กำหนดจาก env มาใช้ หรือ 8080
