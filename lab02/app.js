@@ -1,7 +1,7 @@
 require('dotenv').config()
 
+const notFound = require('./middlewares/notFound')
 const express = require('express')
-
 const app =express()
 
 const todo = [
@@ -48,10 +48,10 @@ app.get('/todo/:id', (req,res)=> {
 
 
 
-///notfound 
-app.use((req,res)=>{
-    res.status(404).send({msg: 'Path not found'})
-})
+///Notfound midleware
+
+
+app.use(notFound)
 
 
 const port = process.env.PORT || 8080
