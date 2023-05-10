@@ -11,7 +11,8 @@ const todo = [
     {id: 4, title: 'Javascript'},
 ]
 
-
+app.use(express.json())  // ถ้า request นั้นมี body เปน json ใช้ app.use(express.json())  เพื่อ ดักจับ
+// app.use(express.urlencoded( { extended: false } ) )
 
 // ==> /todo
 // res.send
@@ -46,6 +47,19 @@ app.get('/todo/:id', (req,res)=> {
 
 
 
+app.post('/todo', (req, res) => {
+    const {id, title} = req.body
+    //console.log(req.body)
+    todo.push({id: id,title: title})
+    console.log(todo)
+    res.send(req.body)
+})
+
+// example POST
+/*{
+    "id": 6,
+    "title": "CC14"
+} */
 
 
 ///Notfound midleware
