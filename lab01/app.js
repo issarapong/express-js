@@ -32,6 +32,38 @@ app.use('/test', (req, res) => {  //app.use ไม่สนใจ method
 })
 
 
+app.get('/double/:num', (req, res) => {
+    const {num} = req.params 
+    //let result = num*2
+    //console.log(result)
+   // console.log(req.params.num)
+    //res.send({double : result})
+    res.send({double : +num * 2})
+
+})
+
+
+ //lab   /add/5/10
+
+
+ app.get('/add/:num1/:num2', (req, res) => {
+    const {num1, num2} = req.params 
+  //  let num = Number(num1)+Number(num2)
+   // console.log(num)
+   // console.log(req.params.num)
+   // res.send({ result : num})
+   res.send({result: +num1+ +num2})
+ })
+
+
+app.get('/test-query', (req,res)=> {
+    const { a, b} = req.query
+    console.log(req.query)
+    console.log(a,b)
+    res.send(req.query)
+})
+
+
 app.use((req,res)=> {
     res.status(404).send({msg: 'Path not found!!!'})
 })
