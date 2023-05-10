@@ -4,6 +4,56 @@ const express = require('express')
 
 const app =express()
 
+const todo = [
+    {id: 1, title: 'HTML'},
+    {id: 2, title: 'CSS'},
+    {id: 3, title: 'Javascript'},
+    {id: 4, title: 'Javascript'},
+]
+
+
+
+// ==> /todo
+// res.send
+//{id 33,title: 'Javascript'}
+// ถ้าไม่มีข้อมูลให้ส่ง nofound
+
+
+app.get('/todo', (req,res)=>{
+    const {title} =req.query
+    if(!title) {
+        return res.send(todo)
+    }
+        
+    
+    console.log(title)
+     //let rs =todo.find(el => el.title.toLocaleLowerCase() === title.toLocaleLowerCase())  // find with case sensitive
+     let rs = todo.find(el => el.title.toLowerCase().includes(title.toLowerCase())) // include ใช้ กรณีมี คำในนั้น จะได้เลย //curl 'http://localhost:8999/todo?title=ja'
+    res.send( rs || {msg : 'not found title'})
+})
+
+
+// todo/2 ให้ res.send todo ตัวที่ 2 ออกมา
+
+app.get('/todo/:id', (req,res)=> {
+
+    const {id, titile} = req.params
+
+    let rs = todo.find(el => el.id === +id)
+
+    res.send(rs || {msg : 'not founds'})
+})
+
+
+
+
+
+///notfound 
+app.use((req,res)=>{
+    res.status(404).send({msg: 'Path not found'})
+})
+
+
 const port = process.env.PORT || 8080
 app.listen(port,()=> console.log(`Server on ${port}`))
 
