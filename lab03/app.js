@@ -5,33 +5,25 @@ const app = express()
 
 app.get('/data', async (req,res,next)=>{
     // let data = JSON.parse(fs.readFileSync('./data.json'))
-    console.log(first)
     try {
-       
         let data = await fs.readFile('./data.json', 'utf8')
         res.json(JSON.parse(data))
     }catch(err) {
         next(err)
     }
-
-    
 })
 
 app.get('/info', (req, res, next) => {
-    fs.readFile('./data.json', 'utf8').then( data=> {
+    fs.readFile('./data.jso', 'utf8').then( data=> {
         console.log(data)
-        res.json(data)
-    }).catch( err => next(err))
+        res.json(JSON.parse(data))
+    }).catch(next)
 })
 
-app.get('/test', (req,res)=> {
-    console.log(xxx)
+app.get('/test', (req, res) => {
+    console.log(xxxx)
     res.send('ok')
 })
-
-
-
-
 
 app.use((req,res) => {
     res.status(404).json({msg: 'resource not found'})
