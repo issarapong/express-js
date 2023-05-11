@@ -39,7 +39,7 @@ app.delete('/products/:id', (req,res)=> {
               saveFile('./products.json', allproduct)
               return { msg: `${del_item?.id || 'no thing'} have deleted`}
 
-    }).then( msg => res.json(msg))
+    }).then( msg => res.status(200).json(msg))
 })
 
 // app.delete('/product/:id', (req, res) => {
