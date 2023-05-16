@@ -6,6 +6,10 @@ const app = express()
 
 
 
+app.use(['/products', '/product'], ()=> {})
+app.use('category',()=>{})
+
+
 //Error midle ware โดย defaurl
 // notfound
 app.use((req,res) => {
