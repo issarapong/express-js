@@ -22,3 +22,5 @@ code package.json
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon"
 ```
+
+#### Read Document As https://www.npmjs.com/package/mysql But use https://www.npmjs.com/package/mysql2
