@@ -16,3 +16,9 @@ exports.findId =(id) => {
     let sql = 'select * from producs where id = ?'
     return pool.query(sql, [id]),then( ([rows]) => rows)
 }
+
+exports.create = (product) => {
+    let {name, price, quantity, category_id} =product
+    let sql ='INSERT INTO products (name, price, quantity, category_id) VALUES (?,?,?,?)'
+    return pool.query(sql, [name, price, quantity, category_id]).then(([rs]) => rs)
+}

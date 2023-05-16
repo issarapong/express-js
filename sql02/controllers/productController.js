@@ -33,3 +33,16 @@ exports.getProductById = (req, res, next) => {
     }).catch(next)
 
 }
+
+exports.createProduct = (req, res, next) => {
+    // const data = req.body
+    // console.log(data)
+    // res.send('createproduct')
+    Products.create(req.body).then(rs=> {
+        console.log(rs)
+      //  res.json(rs)
+        if(rs.affectedRows>=1) {
+            res.status(201).json(rs)   //Create status
+        }
+    }).catch(next)
+}

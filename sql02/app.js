@@ -7,7 +7,7 @@ const categoryRoute = require('./routes/categoryRoute')
 
 const app = express()
 
-
+app.use(express.json())// ต้องใส่เวลามี method POST
 
 app.use(['/products', '/product'], productRoute)  // เรียก /products', '/product จะได้ผลลัพธิ์เหมือนกัน
 app.use('/category', categoryRoute)
