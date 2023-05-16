@@ -24,3 +24,7 @@ code package.json
 ```
 
 #### Read Document As https://www.npmjs.com/package/mysql But use https://www.npmjs.com/package/mysql2
+
+
+#### Using connection pools
+การ เปิด Pool Conenction จะ กิน RAM เลย แต่ไม่ต้องต่อ Connecttion ไหม่ทุกครั้ง  ลักษณะเป็นการเปิดคู่สาย รอ
