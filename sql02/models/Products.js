@@ -10,3 +10,9 @@ exports.findAll = () => {
     )
 
 }
+
+
+exports.findId =(id) => {
+    let sql = 'select * from producs where id = ?'
+    return pool.query(sql, [id]),then( ([rows]) => rows)
+}

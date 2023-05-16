@@ -20,6 +20,16 @@ exports.getAllProducts = (req, res, next) => {
 }
 
 
+// exports.getProductById = (req, res, next) => {
+//     res.send('in GetProduct By Id')
+
+// find by id
+
 exports.getProductById = (req, res, next) => {
-    res.send('in GetProduct By Id')
+    const {id} = req.params
+    Products.findId(id).then((row)=> {
+        res.json(row)
+
+    }).catch(next)
+
 }
