@@ -3,6 +3,7 @@
 mkdir project
 cd project
 touch app.js
+touch README.md
 npm init -y
 npm i express dotenv mysql2
 touch .env

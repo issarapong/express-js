@@ -2,12 +2,15 @@ require('dotenv').config()
 const express = require('express')
 const mysql = require('mysql2/promise')
 
+const productRoute = require('./routes/productsRoute')
+const categoryRoute = require('./routes/categoryRoute')
+
 const app = express()
 
 
 
-app.use(['/products', '/product'], ()=> {})
-app.use('category',()=>{})
+app.use(['/products', '/product'], productRoute)  // เรียก /products', '/product จะได้ผลลัพธิ์เหมือนกัน
+app.use('/category', categoryRoute)
 
 
 //Error midle ware โดย defaurl
