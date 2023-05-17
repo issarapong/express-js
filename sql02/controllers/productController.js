@@ -7,6 +7,7 @@
     
 // }
 
+const error = require('../middlewares/error')
 const Products = require('../models/Products')
 exports.getAllProducts = (req, res, next) => {
    // let sql ='select * from products'
@@ -43,6 +44,43 @@ exports.createProduct = (req, res, next) => {
       //  res.json(rs)
         if(rs.affectedRows>=1) {
             res.status(201).json(rs)   //Create status
+        } 
+        throw new Error( 'cant create')
+    }).catch(next)
+}
+
+exports.deleteProducts = (req, res, next) => {
+    const {id} = req.params
+    Products.delete(id).then(rs => {
+        if(rs.affectedRows>=1) {
+            res.json('delete ok')
+        } else {
+        //res.status(500).json({err: 'cant delete'})
+        const c_err = new Error(`Cant delet:  ${id}`)
+        c_err.statusCode = 444
+         throw c_err
+        //throw new Error(`Cant delet:  ${id}`)
+
         }
+    }).catch(err => next(err))
+}
+
+
+exports.updateProducts = (req, res, next) => {
+    const {id} =req.params
+    Products.update(id,req.body).then(rs=>{
+        console.log(rs)
+        if(rs.affectedRows>=1){
+            return res.json(rs)
+        }
+        throw new Error('Cantupdate')
+    })
+    res.send('update Product')
+}
+
+exports.getProductByName = (req, res, next) => {
+    const {name} = req.query
+    Products.findByName(name).then(row => {
+        res.json(row)
     }).catch(next)
 }
